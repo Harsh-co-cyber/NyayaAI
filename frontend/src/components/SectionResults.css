@@ -1,0 +1,332 @@
+.section-results {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.category-info {
+    background: #1E293B;
+    border: 2px solid #334155;
+    border-left: 4px solid;
+    color: #F8FAFC;
+    padding: 16px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.category-info h2 {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #F8FAFC;
+}
+
+.law-description {
+    font-size: 0.85em;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: #94A3B8;
+}
+
+.category-badge {
+    font-size: 0.95em;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    background: rgba(14, 165, 233, 0.1);
+    border: 2px solid;
+    padding: 6px 14px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.sections-list h2 {
+    font-size: 1.2em;
+    color: #F8FAFC;
+    margin-bottom: 8px;
+}
+
+.sections-count {
+    color: #94A3B8;
+    font-size: 0.85em;
+    margin-bottom: 16px;
+}
+
+.section-card {
+    border: 2px solid #334155;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 14px;
+    background: #1E293B;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.section-card:hover {
+    border-color: #0EA5E9;
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.2);
+    transform: translateY(-2px);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #0F172A;
+    border-bottom: 2px solid #334155;
+    gap: 15px;
+}
+
+.section-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.section-title h3 {
+    font-size: 1em;
+    color: #F8FAFC;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.section-name {
+    color: #94A3B8;
+    font-size: 0.85em;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.section-severity {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.severity-badge {
+    border: 2px solid;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Severity colors */
+.severity-badge.high {
+    border-color: #EF4444;
+    color: #EF4444;
+    background: rgba(239, 68, 68, 0.15);
+}
+
+.severity-badge.medium {
+    border-color: #F59E0B;
+    color: #F59E0B;
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.severity-badge.low {
+    border-color: #64748B;
+    color: #64748B;
+    background: rgba(100, 116, 139, 0.15);
+}
+
+/* Law type badges */
+.law-type-badge {
+    border: 2px solid;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.law-type-badge.bns {
+    border-color: #059669;
+    color: #059669;
+    background: rgba(5, 150, 105, 0.1);
+}
+
+.law-type-badge.bnss {
+    border-color: #D97706;
+    color: #D97706;
+    background: rgba(217, 119, 6, 0.1);
+}
+
+.section-body {
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section-meta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    font-size: 0.8em;
+    color: #94A3B8;
+}
+
+.meta-item strong {
+    color: #F8FAFC;
+    margin-right: 4px;
+    font-weight: 600;
+}
+
+.section-description {
+    color: #94A3B8;
+    line-height: 1.5;
+    font-size: 0.85em;
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #0EA5E9;
+    font-size: 0.82em;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0;
+    margin-top: 4px;
+    display: inline-block;
+    transition: color 0.2s ease;
+}
+
+.read-more-btn:hover {
+    color: #38BDF8;
+}
+
+.keywords strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #F8FAFC;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.keyword-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.keyword-tag {
+    background: #0F172A;
+    border: 1px solid #334155;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.75em;
+    color: #94A3B8;
+}
+
+.section-footer {
+    padding: 10px 18px;
+    background: #0F172A;
+    border-top: 1px solid #334155;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    user-select: none;
+    color: #F8FAFC;
+    font-size: 0.85em;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #0EA5E9;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    background: #0F172A;
+    border-top: 2px solid #334155;
+    border-radius: 0 0 10px 10px;
+    margin: 0 -30px -30px -30px;
+}
+
+.fir-btn {
+    background: #4F46E5;
+    color: white;
+    padding: 12px 32px;
+    font-size: 0.9em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.fir-btn:hover:not(:disabled) {
+    background: #6366F1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}
+
+.fir-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.selected-info {
+    color: #94A3B8;
+    font-size: 0.85em;
+}
+
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .section-severity {
+        align-self: flex-start;
+    }
+
+    .section-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .keyword-tags {
+        gap: 4px;
+    }
+
+    .actions {
+        margin: 0 -20px -20px -20px;
+        padding: 16px;
+    }
+
+    .category-info {
+        padding: 14px 16px;
+    }
+
+    .category-info h2 {
+        font-size: 0.95em;
+    }
+
+    .law-description {
+        font-size: 0.8em;
+    }
+
+    .category-badge {
+        font-size: 0.85em;
+        padding: 5px 12px;
+    }
+}

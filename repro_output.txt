@@ -1,0 +1,31 @@
+Initializing embedding model...
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 10858.44it/s]
+✓ Loaded 358 BNS sections
+Loading existing BNS database...
+✓ BNS database ready
+✓ Loaded 532 BNSS sections
+Loading existing BNSS database...
+✓ BNSS database ready
+✓ System initialized successfully
+QUERY: A person was robbed at night in a park and assaulted by two men
+retrieved 0
+no sections returned
+---
+QUERY: Someone stole a mobile phone from a motorcycle
+retrieved 0
+no sections returned
+---
+QUERY: There was a burglary and theft at the house
+retrieved 0
+no sections returned
+---
+QUERY: A woman was harassed and physically assaulted during commute
+retrieved 0
+no sections returned
+---
+QUERY: The victim was injured in a road accident and property was damaged
+retrieved 0
+no sections returned
+---
+API test
+404 {"detail":"No applicable sections found"}

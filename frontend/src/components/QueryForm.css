@@ -1,0 +1,353 @@
+/* Query Form - Dark Theme */
+
+.query-form-container {
+  background: #1E293B;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  padding: 40px;
+  border: 2px solid #334155;
+}
+
+.query-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Mode Toggle */
+.form-mode-toggle {
+  display: flex;
+  background: #0F172A;
+  border-radius: 10px;
+  padding: 4px;
+  border: 2px solid #334155;
+  width: fit-content;
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background: #0EA5E9;
+  color: #0F172A;
+}
+
+.mode-btn:hover:not(.active) {
+  color: #F8FAFC;
+  background: #1E293B;
+}
+
+/* Structured Form */
+.structured-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sf-section {
+  background: #0F172A;
+  border: 2px solid #334155;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sf-label {
+  font-size: 1em;
+  font-weight: 700;
+  color: #0EA5E9;
+}
+
+.sf-hint {
+  font-size: 0.82em;
+  font-weight: 400;
+  color: #64748B;
+  margin-left: 6px;
+}
+
+.sf-sublabel {
+  font-size: 0.88em;
+  font-weight: 600;
+  color: #94A3B8;
+  margin-top: 4px;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #1E293B;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  padding: 7px 14px;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #CBD5E1;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.checkbox-item input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-item:hover {
+  border-color: #0EA5E9;
+  color: #F8FAFC;
+}
+
+.checkbox-item.checked {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: #0EA5E9;
+  color: #38BDF8;
+  font-weight: 600;
+}
+
+.checkbox-item.checked::before {
+  content: '✓ ';
+  color: #0EA5E9;
+  font-weight: 700;
+}
+
+.other-input {
+  width: 100%;
+  background: #1E293B;
+  border: 2px solid #0EA5E9;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9em;
+  font-family: inherit;
+  color: #F8FAFC;
+  margin-top: 4px;
+  transition: all 0.2s ease;
+}
+
+.other-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.other-input::placeholder {
+  color: #64748B;
+}
+
+/* Row layouts */
+.sf-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.sf-row.three-col {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+/* Form group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.88em;
+  font-weight: 600;
+  color: #94A3B8;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="time"] {
+  background: #1E293B;
+  border: 2px solid #334155;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #F8FAFC;
+  transition: all 0.2s ease;
+  color-scheme: dark;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0EA5E9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #64748B;
+}
+
+/* Textarea */
+.form-group textarea {
+  background: #0F172A;
+  border: 3px solid #334155;
+  border-radius: 12px;
+  padding: 18px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 150px;
+  transition: all 0.3s ease;
+  line-height: 1.6;
+  color: #F8FAFC;
+}
+
+.form-group textarea:focus {
+  outline: none;
+  border-color: #0EA5E9;
+  background: #1E293B;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+}
+
+.form-group textarea::placeholder {
+  color: #64748B;
+}
+
+.form-group small {
+  color: #94A3B8;
+  font-size: 0.9em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-group small::before {
+  content: '💡';
+}
+
+/* Error */
+.error-message {
+  background: rgba(239, 68, 68, 0.15);
+  border: 2px solid #EF4444;
+  border-radius: 12px;
+  padding: 15px 20px;
+  color: #EF4444;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Submit */
+.submit-btn {
+  background: #0EA5E9;
+  color: #0F172A;
+  padding: 18px 40px;
+  font-size: 1.1em;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #38BDF8;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(14, 165, 233, 0.6);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .query-form-container {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .sf-row.three-col {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group textarea {
+    padding: 14px;
+    font-size: 15px;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    padding: 15px 30px;
+    font-size: 1em;
+  }
+
+  .mode-btn {
+    padding: 9px 16px;
+    font-size: 0.88em;
+  }
+}
+
+
+/* Complaint Preview */
+.complaint-preview {
+  background: #0F172A;
+  border: 2px solid #0EA5E9;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.preview-header {
+  color: #0EA5E9;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview-content {
+  background: #1E293B;
+  border-radius: 8px;
+  padding: 16px;
+  color: #F8FAFC;
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 60px;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #334155;
+}

@@ -1,0 +1,16 @@
+Initializing embedding model...
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 10982.02it/s]
+✓ Loaded 358 BNS sections
+Loading existing BNS database...
+✓ BNS database ready
+✓ Loaded 532 BNSS sections
+Loading existing BNSS database...
+✓ BNSS database ready
+✓ System initialized successfully
+BNS count: 0
+BNSS count: 0
+BNS collection name: bns_sections_enhanced
+BNSS collection name: bnss_sections_enhanced
+Query: A person was robbed at night in a park and assaulted by two men
+BNS raw results len 0
+BNSS raw results len 0
