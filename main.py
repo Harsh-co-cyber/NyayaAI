@@ -12,8 +12,10 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from collections import Counter
 import re
 from datetime import datetime
-from openai import OpenAI
+from groq import Groq
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import uvicorn
 
 # Initialize FastAPI app
@@ -169,11 +171,85 @@ Search Terms: {row['Search_Text']}"""
         bnss_lookup
     )
 
-    # Initialize OpenAI client for LM Studio
-    client = OpenAI(
-        base_url="http://127.0.0.1:1234/v1",
-        api_key="lm-studio"
-    )
+    # Initialize Groq client and provide a small compatibility shim
+    groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+    class GroqShim:
+        """Minimal shim to emulate the small OpenAI-like interface used
+        in this project (client.chat.completions.create(...)). It sends
+        a joined prompt to Groq and returns an object with a
+        `choices[0].message.content` text field so existing code works.
+        """
+        def __init__(self, groq_client):
+            self._client = groq_client
+            self.chat = self
+
+        class _Completions:
+            def __init__(self, parent):
+                self._parent = parent
+
+            def create(self, model, messages=None, temperature=0.0, max_tokens=1000, **kwargs):
+                # Build a simple prompt from chat messages
+                prompt_parts = []
+                if messages:
+                    for m in messages:
+                        role = m.get("role", "user")
+                        content = m.get("content", "")
+                        prompt_parts.append(f"[{role.upper()}] {content}")
+                prompt = "\n".join(prompt_parts)
+                # Prefer the Groq chat completions API. Map max_tokens -> max_completion_tokens.
+                try:
+                    # Use the chat completions endpoint which returns structured usage data
+                    resp = self._parent._client.chat.completions.create(
+                        messages=messages,
+                        model=model,
+                        temperature=temperature,
+                        max_completion_tokens=max_tokens,
+                        **kwargs,
+                    )
+                except Exception as e:
+                    # On failure, return a simple response-like object carrying the error text
+                    choice = type("Choice", (), {})()
+                    choice.message = type("Msg", (), {"content": f"[GROQ ERROR] {e}"})
+                    return type("Resp", (), {"choices": [choice]})()
+
+                # Extract text from canonical ChatCompletion shape
+                text = None
+                try:
+                    text = resp.choices[0].message.content
+                except Exception:
+                    try:
+                        # fallback to content array shape
+                        text = resp.output[0]["content"][0]["text"]
+                    except Exception:
+                        text = str(resp)
+
+                # Log usage if present so calls are visible in server logs
+                usage = getattr(resp, 'usage', None)
+                if usage is not None:
+                    try:
+                        p = getattr(usage, 'prompt_tokens', None)
+                        c = getattr(usage, 'completion_tokens', None)
+                        t = getattr(usage, 'total_tokens', None)
+                        print(f"[GROQ USAGE] model={model} prompt={p} completion={c} total={t}")
+                    except Exception:
+                        pass
+
+                choice = type("Choice", (), {})()
+                choice.message = type("Msg", (), {"content": text})
+
+                # Return an object that preserves .choices and .usage for existing callers
+                Resp = type("Resp", (), {})
+                resp_obj = Resp()
+                resp_obj.choices = [choice]
+                resp_obj.usage = usage
+                return resp_obj
+
+        @property
+        def completions(self):
+            return GroqShim._Completions(self)
+
+    client = GroqShim(groq_client)
     print("✓ System initialized successfully")
 
 def retrieve_relevant_sections_enhanced(query, top_k=10):
@@ -558,14 +634,13 @@ OUTPUT ONLY THE COMPLETED FIR. NO EXPLANATIONS.
 """
     try:
         response = client.chat.completions.create(
-            model="microsoft/phi-4-mini-reasoning",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": "You are a police FIR drafting assistant. Output only the completed FIR document in plain text, with no analysis or commentary."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.1,
-            max_tokens=2000,
-            extra_body={"reasoning": {"effort": "low"}}
+            max_tokens=2000
         )
         fir_text = clean_llm_output(response.choices[0].message.content)
         if is_valid_fir_output(fir_text):
@@ -707,14 +782,13 @@ def generate_sections_summary(sections: list[str]) -> str:
     )
     try:
         resp = client.chat.completions.create(
-            model="microsoft/phi-4-mini-reasoning",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": "You are a concise legal summarization assistant. Output ONLY the summary text; do not include any reasoning, commentary or self-referential statements."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.05,
-            max_tokens=300,
-            extra_body={"reasoning": {"effort": "low"}}
+            max_tokens=300
         )
         out = clean_llm_output(resp.choices[0].message.content)
         
