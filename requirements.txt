@@ -11,3 +11,5 @@ datasets
 groq
 chromadb
 python-dotenv
+torch
+langchain-chroma
